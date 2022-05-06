@@ -18,12 +18,12 @@ h1 {
 
 button {
   background: none;
-	border: none;
-	font: inherit;
-	outline: none;
+  border: none;
+  font: inherit;
+  outline: none;
   cursor: pointer;
   border: 1px solid gray;
-	padding: 2px 12px 4px 12px;
+  padding: 2px 12px 4px 12px;
   transition: opacity 0.3s;
 }
 button:hover {
@@ -34,6 +34,9 @@ button.show {
 }
 button.hide {
   opacity: 0;
+  cursor: auto;
+}
+button:disabled {
   cursor: auto;
 }
 
@@ -60,7 +63,7 @@ button.hide {
   font-weight: bold;
   height: 50px;
   width: 50px;
-  color:gray;
+  color: gray;
   font-size: 20px;
 }
 .box.disabled {
