@@ -4,4 +4,4 @@ Built a tic tac toe game which leverages a thought experiment around using regul
 
 ## Preview
 
-<img src="./assets/sample.png" alt="drawing" width="175"/>
+<img src="./assets/sample_.png" alt="drawing" width="175"/>
