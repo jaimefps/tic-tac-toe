@@ -1,5 +1,5 @@
 import { GameState } from "./GameState"
-import { useVanillaState } from "./module"
+import { useVanillaState } from "use-vanilla-state"
 import "./App.css"
 
 function shouldHighlight(x: number, y: number, game: GameState) {
@@ -24,7 +24,7 @@ function makeBoxProps(x: number, y: number, game: GameState) {
   return {
     children: content,
     className: getClassNames(x, y, game),
-    onClick: () => game.play({ x, y }).rerender(),
+    onClick: () => game.play({ x, y }),
     disabled: Boolean(content ?? game.winState())
   }
 }
@@ -64,7 +64,7 @@ function App() {
 
       <button
         disabled={!playCount}
-        onClick={() => game.restart().rerender()}
+        onClick={() => game.restart()}
         className={`btn ${playCount ? "show" : "hide"}`}
       >
         restart

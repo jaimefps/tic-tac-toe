@@ -1,4 +1,4 @@
-import { VanillaState } from "./module"
+import { rerender, VanillaState } from "use-vanilla-state"
 import "./App.css"
 
 const initBoard = [
@@ -23,6 +23,20 @@ type WinState =
 
 export class GameState extends VanillaState {
   private board: Board = this.cloneBoard(initBoard)
+
+  @rerender
+  play(loc: { y: number; x: number }) {
+    const nextBoard = this.cloneBoard(this.board)
+    nextBoard[loc.y][loc.x] = this.turn()
+    this.board = nextBoard
+    return this
+  }
+
+  @rerender
+  restart() {
+    this.board = this.cloneBoard(initBoard)
+    return this
+  }
 
   private cloneBoard(b: Board) {
     return b.map((r) => [...r])
@@ -146,15 +160,5 @@ export class GameState extends VanillaState {
       })
     })
     return playCount
-  }
-  play(loc: { y: number; x: number }) {
-    const nextBoard = this.cloneBoard(this.board)
-    nextBoard[loc.y][loc.x] = this.turn()
-    this.board = nextBoard
-    return this
-  }
-  restart() {
-    this.board = this.cloneBoard(initBoard)
-    return this
   }
 }
