@@ -17,5 +17,5 @@
     "jsx": "react-jsx",
     "experimentalDecorators": true
   },
-  "include": ["src"]
+  "include": ["src", "cypress/integration/Test.cy.tsx"]
 }
