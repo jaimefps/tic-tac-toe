@@ -1,38 +1,38 @@
-import { GameState } from "./GameState"
-import { useVanillaState } from "use-vanilla-state"
-import "./App.css"
+import { GameState } from "./GameState";
+import { useVanillaState } from "use-vanilla-state";
+import "./App.css";
 
 function shouldHighlight(x: number, y: number, game: GameState) {
   return (
     game.winState()?.line?.some(([thisY, thisX]) => {
-      return thisY === y && thisX === x
+      return thisY === y && thisX === x;
     }) ?? false
-  )
+  );
 }
 
 function getClassNames(x: number, y: number, game: GameState) {
-  const lx = `loc-x-${x}`
-  const ly = `loc-y-${y}`
-  const end = !!game.winState() ? "finished" : ""
-  const active = game.boardState()[y][x] ? "disabled" : "enabled"
-  const highlight = shouldHighlight(x, y, game) ? "highlight" : ""
-  return `box ${active} ${highlight} ${end} ${lx} ${ly}`
+  const lx = `loc-x-${x}`;
+  const ly = `loc-y-${y}`;
+  const end = !!game.winState() ? "finished" : "";
+  const active = game.boardState()[y][x] ? "disabled" : "enabled";
+  const highlight = shouldHighlight(x, y, game) ? "highlight" : "";
+  return `box ${active} ${highlight} ${end} ${lx} ${ly}`;
 }
 
 function makeBoxProps(x: number, y: number, game: GameState) {
-  const content = game.boardState()[y][x]
+  const content = game.boardState()[y][x];
   return {
     children: content,
     className: getClassNames(x, y, game),
     onClick: () => game.play({ x, y }),
-    disabled: Boolean(content ?? game.winState())
-  }
+    disabled: Boolean(content ?? game.winState()),
+  };
 }
 
-function App() {
-  const game = useVanillaState(GameState)
-  const winDetails = game.winState()
-  const playCount = game.playCount()
+export function App() {
+  const game = useVanillaState(GameState);
+  const winDetails = game.winState();
+  const playCount = game.playCount();
 
   return (
     <div className="App">
@@ -70,7 +70,7 @@ function App() {
         restart
       </button>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
